@@ -1,0 +1,10 @@
+@use '../../global' as g;
+.l-footer {
+    background: g.$mainColor;
+    text-align: center;
+    padding: 8px;
+
+    &__copyright {
+        color: g.$subColor;
+    }
+}

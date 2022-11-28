@@ -1,0 +1,92 @@
+@use '../global' as g;
+
+.form {
+
+    &__item:not(:nth-of-type(1)) {
+        margin-top: 32px;
+    }
+
+    &__dd {
+        margin-top: 8px;
+    }
+
+    &__dds {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    &__input {
+        width: 100%;
+        background: g.$grayColor;
+        padding: 4px;
+    }
+
+    &__select {
+        background: g.$grayColor;
+        width: 120px;
+        padding: 4px;
+        appearance: checkbox;
+    }
+
+    &__zip-code {
+        width: 80px;
+    }
+
+    &__button {
+        display: block;
+        width: 200px;
+        background: g.$accentColor;
+        color: g.$subColor;
+        box-shadow: g.$boxShadow;
+        padding: 8px;
+        text-align: center;
+        margin: 64px auto 0;
+    }
+
+
+    &__radio {
+        appearance: radio;
+        margin-right: 8px;
+    }
+
+    &__radio--label {
+        @include g.fz(14);
+    }
+
+    &__price {
+        margin-right: 8px;
+        width: 50%;
+    }
+
+    &__textarea {
+        width: 100%;
+        border: 1px solid g.$mainColor;
+        background: g.$grayColor;
+    }
+
+    &__checkbox {
+        appearance: checkbox;
+        margin-right: 8px;
+    }
+
+    &__msg {
+        text-align: center;
+        @include g.fz(30);
+        margin-top: 64px;
+    }
+
+    &__msg--link {
+        display: block;
+        text-align: center;
+        margin-top: 32px;
+        margin-bottom: 32px;
+        @include g.fz(24);
+        color: #0000EE;
+        text-decoration: underline;
+    }
+
+    &__msg--link:hover {
+        opacity: .6;
+    }
+}

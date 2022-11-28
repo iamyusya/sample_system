@@ -1,0 +1,15 @@
+@use '../global' as g;
+
+.u-br__500 {
+    @include g.mq(sm) {
+        display: none;
+    }
+
+    @include g.mq(md) {
+        display: block;
+    }
+
+    @include g.mq(slg) {
+        display: none;
+    }
+}

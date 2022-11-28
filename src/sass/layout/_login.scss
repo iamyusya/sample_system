@@ -1,0 +1,72 @@
+@use '../global' as g;
+
+
+.login {
+    background: g.$accentColor;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+
+    &__form {
+        background: g.$subColor;
+        box-shadow: g.$boxShadow;
+        padding: 32px;
+        width: 100%;
+        max-width: 600px;
+    }
+
+    &__title {
+        text-align: center;
+        @include g.fz(24);
+    }
+
+    &__list {
+        margin-top: 24px;
+    }
+
+    &__item:not(:first-child) {
+        margin-top: 16px;
+    }
+
+    &__name {
+        @include g.fz(14);
+    }
+
+    &__input {
+        margin-top: 8px;
+    }
+
+    &__input input {
+        background: g.$grayColor;
+        width: 100%;
+        padding: 8px;
+    }
+
+    &__input input:focus {
+        outline: solid 2px g.$accentColor;
+    }
+
+    &__error {
+        color: g.$redColor;
+    }
+
+    &__button {
+        background: g.$accentColor;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: g.$subColor;
+        margin-top: 32px;
+        padding: 8px;
+        width: 100%;
+        box-shadow: g.$boxShadow;
+        transition: .2s;
+    }
+
+    &__button:hover {
+        opacity: .8;
+    }
+}

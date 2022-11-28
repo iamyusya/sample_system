@@ -1,0 +1,23 @@
+@use '../global' as g;
+
+body {
+	font-family: g.$baseFontFamily;
+	line-height: 1.75;
+	@include g.fz(16);
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+img {
+	width: 100%;
+	height: auto;
+	vertical-align: top;
+}
+
+input {
+	@include g.fz(16);
+}
+

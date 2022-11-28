@@ -1,0 +1,151 @@
+@use '../global' as g;
+
+.table {
+    @include g.mq(md) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    &__wrap {
+        @include g.mq(md) {
+            width: 48%;
+        }
+    }
+
+    &__tr {
+        display: block;
+        display: flex;
+        position: relative;
+    }
+
+    &__tr:not(:first-child) {
+        margin-top: 32px;
+    }
+
+    &__tr::after {
+        content: "";
+        position: absolute;
+        background: g.$mainColor;
+        width: 100%;
+        height: 1px;
+        bottom: -8px;
+    }
+
+    &__th {
+        width: 30%;
+    }
+
+    &__td {
+        margin-left: 16px;
+        width: 70%;
+        overflow-wrap: break-word;
+        position: relative;
+    }
+
+    &__td--subtext {
+        @include g.fz(14);
+    }
+
+    &__td--img {
+        display: block;
+        width: 24px;
+        height: 24px;
+        transition: linear .2s;
+    }
+
+    &__td--img:hover {
+        opacity: 0.5;
+    }
+
+    &__td--edit {
+        background: #0000EE;;
+        mask: url(g.$imgDir+'edit.svg') no-repeat center center / contain;
+    }
+
+    &__td--delete {
+        background: red;
+        mask: url(g.$imgDir+'delete.svg') no-repeat center center / contain;
+    }
+
+    &__td--tooltip {
+        position: absolute;
+        background: g.$mainColor;
+        color: g.$subColor;
+        @include g.fz(12);
+        top: 0;
+        left: 40px;
+        font-weight: bold;
+        padding: 0 4px;
+        border-radius: 2px;
+        transition: linear .2s;
+        opacity: 0;
+    }
+
+    &__td--tooltip::after {
+        content: "";
+        position: absolute;
+        border-top: 6px solid transparent;
+        border-right: 6px solid g.$mainColor;
+        border-bottom: 6px solid transparent;
+        left: -5px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    &__td--img:hover ~ .table__td--tooltip {
+        left: 30px;
+        opacity: 1;
+    }
+
+    &__modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        opacity: 0;
+        background: g.$subColor;
+        border-radius: 10px;
+        transition: linear .2s;
+        padding: 32px 64px;
+        box-shadow: 0 0 3px rgba(g.$mainColor, 0.15);
+        z-index: 1;
+    }
+
+    &__modal.is-show {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    &__modal--text {
+        text-align: center;
+        @include g.fz(20);
+    }
+
+    &__modal--buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 16px;
+    }
+
+    &__modal--button-true {
+        background: g.$accentColor;
+        color: g.$subColor;
+        border-radius: 5px;
+        box-shadow: 0 0 3px rgba(g.$mainColor, 0.15);
+        width: 40%;
+    }
+
+    &__modal--button-false {
+        border-radius: 5px;
+        box-shadow: 0 0 3px rgba(g.$mainColor, 0.15);
+        width: 40%;
+        cursor: pointer;
+        text-align: center;
+    }
+}
+
+.is_cancel .table__td {
+    text-decoration: line-through;
+}
