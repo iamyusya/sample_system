@@ -3,10 +3,10 @@ require_once './_header.php';
 require_once './loginLevel.php'; 
 // トークンがあれば変数に入れる
 $token = filter_input(INPUT_POST, 'csrfToken');
-// トークンがない場合　未実装
-// if (!isset($_SESSION['csrfToken']) || $token !== $_SESSION['csrfToken']) {
-//     exit('不正なアクセスです');
-// } 
+// トークンがない場合
+if (!isset($_SESSION['csrfToken']) || $token !== $_SESSION['csrfToken']) {
+    exit('不正なアクセスです');
+} 
 // トークン削除
 unset($_SESSION['csrfToken']);
 
@@ -99,7 +99,6 @@ if (isset($_GET['tp']) && $_GET['tp'] == 'waste') {
         }
     }
 }
-
 if ($strErrMsg === '') : 
     // エラーがない場合 一覧画面へ飛ばす
     header('Location: sales_view.php'); 

@@ -4,9 +4,9 @@ require_once './_header.php';
 // 現在のurl取得
 $page_url = (((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ) ? "https://" : "http://").$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 // ブラウザバックした時、SESSIONを初期化
-if ($_SERVER['HTTP_REFERER'] == $page_url) {
-	$_SESSION = [];
-} 
+// if ($_SERVER['HTTP_REFERER'] != $page_url) {
+// 	$_SESSION = [];
+// } 
 ?>
 <?php require_once '_header_head.php'; ?>
 	<div class="login">
@@ -16,7 +16,7 @@ if ($_SERVER['HTTP_REFERER'] == $page_url) {
 				<dl class="login__item">
 					<dt class="login__name">ログインID</dt>
 					<dd class="login__input">
-						<input type="text" id="loginID" name="loginID">
+						<input type="text" id="loginID" name="loginID" placeholder="loginと入力してください">
 					</dd>
 					<p class="login__error">
 						<?php
@@ -31,7 +31,7 @@ if ($_SERVER['HTTP_REFERER'] == $page_url) {
 				<dl class="login__item">
 					<dt class="login__name">パスワード</dt>
 					<dd class="login__input">
-						<input type="text" id="password" name="password">
+						<input type="text" id="password" name="password" placeholder="sampleと入力してください">
 					</dd>
 				</dl>
 			</div>

@@ -2,7 +2,6 @@
 require_once './_header.php';
 require_once './loginLevel.php';
 
-// ワンタイムトークン生成
 $token = h(setToken());
 // SQL実行
 $strSQL = Dbq::createSelectSQL('TrnSales');
@@ -41,9 +40,9 @@ require_once './_header_body.php';
             <?php 
             // 変数にSQL文を入れる MstUserとTrnSalesのテーブルを結合
             $strSQLFunction = "SELECT 
-            MstUser . UserID,
+            TrnSales . UserID,
             MstUser . UserName
-            FROM MstUser INNER JOIN TrnSales ON MstUser . UserID = TrnSales . UserID;";
+            FROM TrnSales INNER JOIN MstUser ON TrnSales . UserID = MstUser . UserID;";
             // SQL実行
             $dbcFunction = connect();
             $stmtFunction = $dbcFunction->prepare($strSQLFunction);
@@ -119,7 +118,7 @@ require_once './_header_body.php';
                 </form>
             </div>
             </div>
-        <?php endwhile ; ?>
+        <?php endwhile; ?>
     </div>
 </main>
-<?php require_once './_footer_body.php'; ?>
+<?php require_once './_footer_body.php';?>

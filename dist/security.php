@@ -14,6 +14,9 @@ function h($str) {
  * @return string $csrfToken
  */
 function setToken() {
+    if (strstr($_SERVER['REQUEST_URI'], 'favicon')) {
+        return;
+    }
     $csrfToken = bin2hex(random_bytes(32));
     $_SESSION['csrfToken'] = $csrfToken;
 

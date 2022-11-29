@@ -4,10 +4,10 @@ require_once './loginLevel.php';
 // トークンがあれば変数に入れる
 $token = filter_input(INPUT_POST, 'csrfToken');
 
-// トークンがない場合　未実装
-// if (!isset($_SESSION['csrfToken']) || $token !== $_SESSION['csrfToken']) {
-//     exit('不正なアクセスです');
-// } 
+// トークンがない場合
+if (!isset($_SESSION['csrfToken']) || $token !== $_SESSION['csrfToken']) {
+    exit('不正なアクセスです');
+} 
 // トークン削除
 unset($_SESSION['csrfToken']);
 

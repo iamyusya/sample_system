@@ -12,9 +12,9 @@ $loginID = filter_input(INPUT_POST, 'loginID');
 $password = filter_input(INPUT_POST, 'password');
 
 // トークンがない場合 未実装
-// if (!isset($_SESSION['csrfToken']) || $token !== $_SESSION['csrfToken']) {
-//     exit('不正なアクセスです');
-// }
+if (!isset($_SESSION['csrfToken']) || $token !== $_SESSION['csrfToken']) {
+    exit('不正なアクセスです');
+}
 
 // トークン削除
 unset($_SESSION['csrfToken']);

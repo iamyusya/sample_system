@@ -6,10 +6,9 @@
 		<title>サンプルシステム</title>
 		<meta name="description" content="顧客管理システム" />
 		<meta name="format-detection" content="telephone=no" />
+		<!-- <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">  -->
+		<link rel="icon" href="data:image/x-icon;,">
 
-		<!-- favicon/webclipicon -->
-		
-	
 
 		<!-- ogp -->
 		<meta property="og:site_name" content="サンプルシステム" />

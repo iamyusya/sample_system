@@ -2,6 +2,7 @@
 require_once './_header.php';  
 require_once './loginLevel.php';
 
+$token = h(setToken());
 // SQL実行
 $strSQL = Dbq::createSelectSQL('MstUser');
 $dbc = connect();

@@ -1,6 +1,6 @@
 <?php 
 require_once './_header.php';   
-// require_once './loginLevel.php';
+require_once './loginLevel.php';
 
 // ワンタイムトークン生成
 $token = h(setToken());
