@@ -4,7 +4,7 @@ require_once './loginLevel.php';
 
 $token = h(setToken());
 // SQL実行
-$strSQL = Dbq::createSelectSQL('TrnSales');
+$strSQL = $strSQL = "SELECT * FROM TrnSales JOIN MstUser ON TrnSales.UserID = MstUser.UserID WHERE TrnSales.IsWaste = 0;";
 $dbc = connect();
 $stmt = $dbc->prepare($strSQL);
 $stmt->execute();
@@ -34,24 +34,12 @@ require_once './_header_body.php';
             <!-- 売上ID -->
             <tr class='table__tr'>
                 <th class='table__th'>No.</td>
-                <td class='table__td'><?php echo h($row['SalesID']); ?></td>
+                <td class='table__td'><?php echo $row['SalesID']; ?></td>
             </tr>
             <!-- 顧客名 -->
-            <?php 
-            // 変数にSQL文を入れる MstUserとTrnSalesのテーブルを結合
-            $strSQLFunction = "SELECT 
-            TrnSales . UserID,
-            MstUser . UserName
-            FROM TrnSales INNER JOIN MstUser ON TrnSales . UserID = MstUser . UserID;";
-            // SQL実行
-            $dbcFunction = connect();
-            $stmtFunction = $dbcFunction->prepare($strSQLFunction);
-            $stmtFunction->execute();
-            $rowFunction = $stmtFunction->fetch();
-            ?>
             <tr class='table__tr'>
                 <th class='table__th'>顧客名</td>
-                <td class='table__td'><?php echo h($rowFunction['UserName']); ?></td>
+                <td class='table__td'><?php echo h($row['UserName']); ?></td>
             </tr>
             <!-- 売上金額 -->
             <tr class='table__tr'>
