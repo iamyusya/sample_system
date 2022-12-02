@@ -2,6 +2,9 @@
 require_once './_header.php';   
 require_once './loginLevel.php';
 
+// 削除
+unset($_SESSION['post']);
+
 // ワンタイムトークン生成
 $token = h(setToken());
 // SQL実行

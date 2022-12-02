@@ -3,10 +3,6 @@ require_once './_header.php';
 
 // 現在のurl取得
 $page_url = (((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ) ? "https://" : "http://").$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-// ブラウザバックした時、SESSIONを初期化
-// if ($_SERVER['HTTP_REFERER'] != $page_url) {
-// 	$_SESSION = [];
-// } 
 ?>
 <?php require_once '_header_head.php'; ?>
 	<div class="login">

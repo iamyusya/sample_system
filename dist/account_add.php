@@ -31,6 +31,20 @@ if ($lngAccountID == 0) {
     $strTitle = "アカウント編集";
 }
 
+// ログインIDが重複した時
+if (isset($_SESSION['post']) && $lngAccountID == 0) {
+    $postAccountName = $_SESSION['post']['AccountName'];
+    $postAccountLoginID = $_SESSION['post']['AccountLoginID'];
+    $postAccountLoginPassword = $_SESSION['post']['AccountLoginPassword'];
+    $postAccountEmail = $_SESSION['post']['AccountEmail'];
+    $intAccountSecurityLevel = $_SESSION['post']['AccountSecurityLevel'];
+} else {
+    $postAccountName = "";
+    $postAccountLoginID = "";
+    $postAccountLoginPassword = "";
+    $postAccountEmail = "";
+}
+
 $intData = [];
 $strData = [];
 // 配列に権限番号を入れる
@@ -57,7 +71,7 @@ require_once './_header_body.php';
                     <label for="">アカウント名</label>
                 </dt>
                 <dd class="form__dd">
-                    <input type="text" class="form__input" name="AccountName" id="AccountName" value="<?php echo h($strAccountName); ?>" placeholder="山田太郎">
+                    <input type="text" class="form__input" name="AccountName" id="AccountName" value="<?php echo h($strAccountName), h($postAccountName); ?>" placeholder="山田太郎">
                 </dd>
             </dl>
             <dl class="form__item">
@@ -65,15 +79,18 @@ require_once './_header_body.php';
                     <label for="">ログインID</label>
                 </dt>
                 <dd class="form__dd">
-                    <input type="text" class="form__input" name="AccountLoginID" id="AccountLoginID" value="<?php echo h($strAccountLoginID); ?>" placeholder="loginID">
+                    <input type="text" class="form__input" name="AccountLoginID" id="AccountLoginID" value="<?php echo h($strAccountLoginID), h($postAccountLoginID); ?>" placeholder="loginID">
                 </dd>
+                <?php if (isset($_SESSION['duplicationMsg'])) : ?>
+                    <p class="form__error"><?php echo $_SESSION['duplicationMsg']; ?></p>
+                <?php endif; ?>
             </dl>
             <dl class="form__item">
                 <dt class="form__dt">
                     <label for="">ログインパスワード</label>
                 </dt>
                 <dd class="form__dd">
-                    <input type="password" class="form__input" name="AccountLoginPassword" id="AccountLoginPassword" value="<?php echo h($strAccountLoginPassword); ?>" placeholder="loginPassword">
+                    <input type="password" class="form__input" name="AccountLoginPassword" id="AccountLoginPassword" value="<?php echo h($strAccountLoginPassword), h($postAccountLoginPassword); ?>" placeholder="loginPassword">
                 </dd>
             </dl>
             <dl class="form__item">
@@ -81,7 +98,7 @@ require_once './_header_body.php';
                     <label for="">メールアドレス</label>
                 </dt>
                 <dd class="form__dd">
-                    <input type="email" class="form__input" name="AccountEmail" id="AccountEmail" value="<?php echo h($strAccountEmail); ?>" placeholder="sample@sample.com">
+                    <input type="email" class="form__input" name="AccountEmail" id="AccountEmail" value="<?php echo h($strAccountEmail), h($postAccountEmail); ?>" placeholder="sample@sample.com">
                 </dd>
             </dl>
             <dl class="form__item">
@@ -97,7 +114,7 @@ require_once './_header_body.php';
                                 <?php if ($intData[$i] == $intAccountSecurityLevel) echo "checked='checked'"; ?>>
                             <label class='form__radio--label' for='<?php echo $intData[$i]; ?>'><?php echo $strData[$i]; ?></label>
                         </div>
-                    <?php endfor ; ?>
+                    <?php endfor; ?>
                 </dd>
             </dl>
             <!-- ワンタイムトークン -->
@@ -106,4 +123,8 @@ require_once './_header_body.php';
         </form>
     </div>
 </main>
-<?php require_once './_footer_body.php'; ?>
+<?php 
+require_once './_footer_body.php'; 
+unset($_SESSION['duplicationMsg']); 
+unset($_SESSION['post']);
+?>
